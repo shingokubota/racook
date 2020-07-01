@@ -44,13 +44,18 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
     arel (9.0.0)
+    autoprefixer-rails (9.8.4)
+      execjs
     bcrypt (3.1.13)
     bindex (0.8.1)
+    boostrap-sass (0.0.2)
+      bootstrap-sass
     bootsnap (1.4.6)
       msgpack (~> 1.0)
+    bootstrap-sass (3.4.1)
+      autoprefixer-rails (>= 5.2.1)
+      sassc (>= 2.0.0)
     builder (3.2.4)
     byebug (11.1.3)
     capybara (3.33.0)
@@ -62,9 +67,6 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     childprocess (3.0.0)
-    chromedriver-helper (2.1.1)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -88,7 +90,6 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
-    io-like (0.3.1)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     listen (3.1.5)
@@ -172,7 +173,7 @@ GEM
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
     ruby_dep (1.5.0)
-    rubyzip (2.3.0)
+    rubyzip (1.3.0)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -184,6 +185,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -217,10 +220,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
-    webdrivers (4.4.1)
+    webdrivers (3.9.4)
       nokogiri (~> 1.6)
-      rubyzip (>= 1.3.0)
-      selenium-webdriver (>= 3.0, < 4.0)
+      rubyzip (~> 1.0)
+      selenium-webdriver (~> 3.0)
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -231,10 +234,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  boostrap-sass
   bootsnap (>= 1.1.0)
   byebug
   capybara (>= 2.15)
-  chromedriver-helper
   coffee-rails (~> 4.2)
   devise
   jbuilder (~> 2.5)
@@ -253,7 +256,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
-  webdrivers
+  webdrivers (~> 3.0)
 
 RUBY VERSION
    ruby 2.6.6p146

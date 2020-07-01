@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   host: db
   username: postgres
-  password: password  #この行がDocker公式に載ってない。
+  password: password
   pool: 5
 
 development:
