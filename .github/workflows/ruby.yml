@@ -1,24 +1,14 @@
 name: Ruby
 
-# masterブランチへのPR時の実行
 on:
   pull_request:
     branches:
     - master
-    # ex.
-    # # Trigger the workflow on push or pull request
-    # on: [push, pull_request]
-    # # Trigger the workflow on pull request activity
-    # on:
-    #   release
-    #     # Only use the types keyword to narrow down the activity types that will trigger your workflow.
-    #     types: [published, created, edited]
-
+    
 jobs:
   run_spec:
     name: Run spec
 
-    # ジョブを実行する仮想マシンを選択（ubuntu/macOS/Windows)
     runs-on: ubuntu-latest
 
     services:
@@ -27,17 +17,9 @@ jobs:
         ports: ["5432:5432"]
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-    # actions/checkoutリポジトリのaction.ymlを利用する
-    - uses: actions/checkout@v1 # https://github.com/actions/checkout/blob/master/action.yml
-        # https://help.github.com/en/articles/workflow-syntax-for-github-actions#jobsjob_idstepsuses
-        #   @~でバージョンやブランチ、コミットIDを指定できる
-        #   自リポジトリのaction.ymlがあるディレクトリを相対パスで指定することもできる
-        #     ex. uses: ./.github/actions/my-action
-        #   Dockerhubのイメージを利用することもできる
-        #     ex. uses: docker://alpine:3.8
+    - uses: actions/checkout@v1 
     - name: Set up Ruby 2.6
-      # actions/checkoutリポジトリのaction.ymlを利用する
-      uses: actions/setup-ruby@v1 # https://github.com/actions/setup-ruby/blob/master/action.yml
+      uses: actions/setup-ruby@v1 
       with:
         ruby-version: 2.6.x
     - name: Test with Rspec
