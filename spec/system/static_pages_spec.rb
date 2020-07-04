@@ -32,7 +32,7 @@ RSpec.describe "静的ページ", type: :system do
   end
 
   describe "利用規約ページ" do
-    before do 
+    before do
       visit terms_path
     end
 
