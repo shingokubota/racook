@@ -18,24 +18,24 @@ jobs:
         with:
           ruby-version: 2.6.x
 
-    # services:
-    #   postgres:
-    #     image: postgres:10.3
-    #     ports: ["5432:5432"]
-    #     options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+#     services:
+#       postgres:
+#         image: postgres:10.3
+#         ports: ["5432:5432"]
+#         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
-    - name: Setup Database
-      run: |
-          bundle exec rails db:create
-          bundle exec rails db:migrate
-      env:
-        RAILS_ENV: test
+      - name: Setup Database
+        run: |
+            bundle exec rails db:create
+            bundle exec rails db:migrate
+        env:
+          RAILS_ENV: test
     
-    - name: Test with Rspec
-      env:
-        RAILS_ENV: test
-        DATABASE_URL: postgresql://postgres@localhost:5432/postgres?encoding=utf8&pool=5&timeout=5000
-      run: |
-        gem install bundler
-        bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
-        bundle exec rspec
+      - name: Test with Rspec
+        env:
+          RAILS_ENV: test
+          DA TABASE_URL: postgresql://postgres@localhost:5432/postgres?encoding=utf8&pool=5&timeout=5000
+        run: |
+          gem install bundler
+          bundle install --path vendor/bundle --quiet --jobs 4 --retry 3
+          bundle exec rspec
