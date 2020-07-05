@@ -34,6 +34,11 @@ RSpec.describe "ログイン", type: :system do
       it "ログインボタンが表示される" do
         expect(page).to have_button "ログイン"
       end
+
+      it "「ログインしたままにする」チェックボックスが表示される" do
+        expect(page).to have_content "ログインしたままにする"
+        expect(page).to have_css 'input#session_remember_me'
+      end
     end
 
     context "ログイン処理" do
