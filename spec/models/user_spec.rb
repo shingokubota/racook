@@ -56,4 +56,10 @@ RSpec.describe User, type: :model do
       expect(user).to be_valid
     end
   end
+
+  context "authenticated?メソッドの確認" do
+    it "ダイジェストが存在しない場合、falseを返すこと" do
+      expect(user.authenticated?('')).to eq false
+    end
+  end
 end

@@ -11,6 +11,12 @@
         <%= f.label :password, "パスワード" %>
         <%= f.password_field :password, class: "form-control", id: "user_password"%>
       </div>
+      <div class="from-group">
+        <%= f.label :remember_me, class: "checkbox inline" do %>
+          <%= f.check_box :remember_me %>
+          <span>ログインしたままにする</span>
+        <% end %>
+      </div>
       <%= f.submit "ログイン", class: "btn btn-primary" %>
     <% end %>
     <br>新規登録の方は<%= link_to("こちら", signup_path) %>
