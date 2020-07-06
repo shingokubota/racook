@@ -14,7 +14,7 @@ end
 # ログイン処理（システムテスト）
 def login_for_system(user)
   visit login_path
-  fill_in "user_email",   with: user.email
+  fill_in "user_email", with: user.email
   fill_in "user_password", with: user.password
   click_button "ログイン"
 end
@@ -38,14 +38,13 @@ def current_user
   end
 end
 
-  # 男女それ以外表示メソッド
-  def display_sex(number)
-    if number == 0
-      "男性"
-    elsif number == 1
-      "女性"
-    else
-      ""
-    end
+# 男女それ以外表示メソッド
+def display_sex(number)
+  if number == 0
+    "男性"
+  elsif number == 1
+    "女性"
+  else
+    ""
   end
 end

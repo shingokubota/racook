@@ -84,7 +84,7 @@ RSpec.describe "Users", type: :system do
       fill_in "ユーザー名", with: "example user"
       fill_in "メールアドレス", with: "example@example.com"
       fill_in "自己紹介", with: "テスト"
-      fill_in "性別", with: 0
+      select "男性", from: "性別"
       click_button "更新する"
       expect(page).to have_content "プロフィールを更新しました！"
       expect(user.reload.name).to eq "example user"
@@ -96,13 +96,14 @@ RSpec.describe "Users", type: :system do
     it "無効なプロフィール更新を行おうとすると、適切なエラーメッセージが表示されること" do
       fill_in "ユーザー名", with: ""
       fill_in "メールアドレス", with: ""
+      select "男性", from: "性別"
       click_button "更新する"
       expect(page).to have_content "ユーザー名を入力してください"
       expect(page).to have_content "メールアドレスを入力してください"
       expect(page).to have_content "メールアドレスは不正な値です"
-      expect(user.reload.name).not.to eq ""
-      expect(user.reload.email).not.to eq ""
-      expect(flash[:success]).not_to be_empty
+      expect(user.reload.name).not_to eq ""
+      expect(user.reload.email).not_to eq ""
+      expect(user.reload.sex).not_to eq 0
     end
   end
 end
