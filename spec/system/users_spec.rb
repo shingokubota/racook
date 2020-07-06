@@ -43,6 +43,7 @@ RSpec.describe "Users", type: :system do
   describe "プロフィールページ" do
     context "ページレイアウト" do
       before do
+        login_for_system(user)
         visit user_path(user)
       end
 
@@ -57,8 +58,51 @@ RSpec.describe "Users", type: :system do
       it "ユーザー情報が表示されることを確認" do
         expect(page).to have_content user.name
         expect(page).to have_content user.introduction
-        expect(page).to have_content user.sex
+        expect(page).to have_content display_sex(user.sex)
       end
+
+      it "プロフィール編集ページへのリンクが表示されていることを確認" do
+        expect(page).to have_link "プロフィール編集", href: edit_user_path(user)
+      end
+    end
+  end
+
+  describe "プロフィール編集ページ" do
+    before do
+      login_for_system(user)
+      visit user_path(user)
+      click_link "プロフィール編集"
+    end
+
+    context "ページレイアウト" do
+      it "正しいタイトルが表示されることを確認" do
+        expect(page).to have_title full_title("プロフィール編集")
+      end
+    end
+
+    it "有効なプロフィール更新を行うと、更新成功のフラッシュが表示されること" do
+      fill_in "ユーザー名", with: "example user"
+      fill_in "メールアドレス", with: "example@example.com"
+      fill_in "自己紹介", with: "テスト"
+      fill_in "性別", with: 0
+      click_button "更新する"
+      expect(page).to have_content "プロフィールを更新しました！"
+      expect(user.reload.name).to eq "example user"
+      expect(user.reload.email).to eq "example@example.com"
+      expect(user.reload.introduction).to eq "テスト"
+      expect(user.reload.sex).to eq 0
+    end
+
+    it "無効なプロフィール更新を行おうとすると、適切なエラーメッセージが表示されること" do
+      fill_in "ユーザー名", with: ""
+      fill_in "メールアドレス", with: ""
+      click_button "更新する"
+      expect(page).to have_content "ユーザー名を入力してください"
+      expect(page).to have_content "メールアドレスを入力してください"
+      expect(page).to have_content "メールアドレスは不正な値です"
+      expect(user.reload.name).not.to eq ""
+      expect(user.reload.email).not.to eq ""
+      expect(flash[:success]).not_to be_empty
     end
   end
 end

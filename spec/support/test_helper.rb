@@ -1,14 +1,25 @@
 include ApplicationHelper
 
+# ログインしているか
 def is_logged_in?
   !session[:user_id].nil?
 end
 
+# ログイン処理（リクエストテスト）
 def login_for_request(user)
   post login_path, params: { session: { email: user.email,
                                         password: user.password } }
 end
 
+# ログイン処理（システムテスト）
+def login_for_system(user)
+  visit login_path
+  fill_in "user_email",   with: user.email
+  fill_in "user_password", with: user.password
+  click_button "ログイン"
+end
+
+# ログイン用ポストリクエスト（記憶用）
 def login_remember(user)
   post login_path, params: { session: { email: user.email,
                                         password: user.password,
@@ -23,6 +34,18 @@ def current_user
     if user && user.authenticated?(cookies[:remember_token])
       login_for_request user
       user
+    end
+  end
+end
+
+  # 男女それ以外表示メソッド
+  def display_sex(number)
+    if number == 0
+      "男性"
+    elsif number == 1
+      "女性"
+    else
+      ""
     end
   end
 end
