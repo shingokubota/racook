@@ -8,6 +8,7 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
+  has_many :dishes, dependent: :destroy
 
   class << self
     def digest(string)
@@ -19,6 +20,10 @@ class User < ApplicationRecord
       SecureRandom.urlsafe_base64
     end
   end
+
+    def feed
+      Dish.where("user_id = ?", id)
+    end
 
     def remember
       self.remember_token = User.new_token

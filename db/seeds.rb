@@ -14,3 +14,13 @@ User.create!(name: "テスト 太郎",
                password: password,
                password_confirmation: password)
 end
+
+10.times do |n|
+  Dish.create!(name: Faker::Food.dish,
+               description: "テスト料理",
+               portion: 2.0,
+               reference: "https://cookpad.com/recipe/5217458",
+               cooking_time: 40,
+               popularity: 4,
+               user_id: 1)
+end
