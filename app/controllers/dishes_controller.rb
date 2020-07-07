@@ -4,4 +4,21 @@ class DishesController < ApplicationController
   def new
     @dish = Dish.new
   end
+
+  def create
+    @dish = current_user.dishes.build(dish_params)
+    if @dish.save
+      flash[:success] = "レシピを登録しました！"
+      redirect_to root_url
+    else
+      render 'dishes/new'
+    end
+  end
+
+  private
+
+    def dish_params
+      params.require(:dish).permit(:name, :description, :portion,
+                                   :reference, :cooking_time, :popularity)
+    end
 end
