@@ -42,6 +42,7 @@ Style/MutableConstant:
 Rails/HelperInstanceVariable:
   Enabled: false
 
+# 条件式と同時に変数代入するのを許可する
 Lint/AssignmentInCondition:
   Enabled: false
 
