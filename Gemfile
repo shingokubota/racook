@@ -38,8 +38,7 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  # gem 'chromedriver-helper' #非推奨のためコメント化
-  gem 'webdrivers', '~>3.0'
+  gem 'webdrivers'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
