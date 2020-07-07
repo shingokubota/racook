@@ -44,3 +44,11 @@ Rails/HelperInstanceVariable:
 
 Lint/AssignmentInCondition:
   Enabled: false
+
+# letの下の行の空白を許可する
+RSpec/EmptyLineAfterFinalLet:
+  Enabled: false
+
+# default_scopeの使用を許可する
+Airbnb/DefaultScope:
+  Enabled: false
