@@ -27,7 +27,7 @@ ja:
         portion: 分量
         reference: 参照用URL
         cooking_time: 調理時間
-        popularity: 人気度
+        popularity: 難易度
         user_id: 作成者のID
   date:
     abbr_day_names:

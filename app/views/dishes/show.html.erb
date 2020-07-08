@@ -1,0 +1,22 @@
+<% provide(:title, "#{@dish.name}") %>
+<div class="container">
+  <div class="row">
+    <h2 class="dish-name"><%= @dish.name %></h2>
+    <div class="change-dish">
+      <% if current_user == @dish.user %>
+        <%= link_to "編集", edit_dish_path(@dish), class: 'edit-dish' %>
+      <% end %>
+    </div>
+    <h4><%= @dish.description %></h4>
+    <h4 class="dish-reference">参照用URL：<%= link_to "#{@dish.reference}", @dish.reference, target: "_blank" %></h4>
+    <h4 class="dish-portion"><%= @dish.portion %>　人分</h4>
+    <div class="show-dish-info">
+      <div class="dish-info">
+        <h5>調理時間：</h5><h4><%= @dish.cooking_time %></h4> <h5>分</h5>
+      </div>
+      <div class="dish-info">
+        <h5>難易度：</h5><h4><%= @dish.popularity %></h4>
+      </div>
+    </div>
+  </div>
+</div>
