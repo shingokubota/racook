@@ -6,4 +6,7 @@
   <span class="pupularity">難易度：<%= dish.popularity %></span><br>
   <span class="referemce"><%= link_to "調理方法", dish.reference, target: :_blank %></span>
   <span class="timestamp"><%= time_ago_in_words(dish.created_at) %>前に投稿</span>
+  <% if current_user.admin? || current_user == dish.user %>
+    <%= link_to "削除",dish_path(dish), method: :delete, data: { confirm: "削除しますか？"} %>
+  <% end %>
 </li>

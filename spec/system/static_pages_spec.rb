@@ -66,5 +66,12 @@ RSpec.describe "静的ページ", type: :system do
       visit root_path
       expect(page).to have_link "レシピを登録する", href: new_dish_path
     end
+
+    it "レシピを削除後、削除成功のフラッシュが表示されること" do
+      visit root_path
+      click_on "削除"
+      page.driver.browser.switch_to.alert.accept
+      expect(page).to have_content "レシピを削除しました！"
+    end
   end
 end
