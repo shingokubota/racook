@@ -29,6 +29,8 @@
           <%= f.text_field :popularity, class: 'form-control', id: 'dish_popularity' %>
         </div>
         <%= f.submit "更新する", class: 'btn btn-primary' %>
+        <p></p>
+        <%= link_to "削除する", dish_path(@dish), method: :delete, data: { confirm: "削除しますか？"} %>
       <% end %>
     </div>
   </div>

@@ -74,6 +74,26 @@ RSpec.describe "Dishes", type: :system do
         expect(page).to have_content dish.popularity
       end
     end
+
+    context "レシピの削除", js: true do
+      it "削除成功のフラッシュが表示されること" do
+        login_for_system(user)
+        visit dish_path(dish)
+        page.accept_confirm do
+          click_link "削除"
+        end
+        expect(page).to have_content "レシピを削除しました！"
+      end
+
+      it "confirmダイアログ でキャンセルを選択した場合" do
+        login_for_system(user)
+        visit dish_path(dish)
+        page.dismiss_confirm do
+          click_link "削除"
+        end
+        expect(page).not_to have_content "レシピを削除しました！"
+      end
+    end
   end
 
   describe "レシピ編集ページ" do
@@ -121,6 +141,14 @@ RSpec.describe "Dishes", type: :system do
         click_button "更新する"
         expect(page).to have_content "レシピ名を入力してください"
         expect(dish.reload.name).not_to eq ""
+      end
+    end
+
+    context "レシピの削除処理", js: true do
+      it "削除成功のフラッシュが表示されること" do
+        click_on "削除"
+        page.driver.browser.switch_to.alert.accept
+        expect(page).to have_content "レシピを削除しました！"
       end
     end
   end
