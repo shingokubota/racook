@@ -1,17 +1,36 @@
 class DishesController < ApplicationController
   before_action :logged_in_user
+  before_action :correct_user, only: [:edit, :update]
 
   def new
     @dish = Dish.new
+  end
+
+  def show
+    @dish = Dish.find(params[:id])
   end
 
   def create
     @dish = current_user.dishes.build(dish_params)
     if @dish.save
       flash[:success] = "レシピを登録しました！"
-      redirect_to root_url
+      redirect_to dish_path(@dish)
     else
       render 'dishes/new'
+    end
+  end
+
+  def edit
+    @dish = Dish.find(params[:id])
+  end
+
+  def update
+    @dish = Dish.find(params[:id])
+    if @dish.update_attributes(dish_params)
+      flash[:success] = "レシピ情報を更新しました！"
+      redirect_to @dish
+    else
+      render 'edit'
     end
   end
 
@@ -20,5 +39,10 @@ class DishesController < ApplicationController
     def dish_params
       params.require(:dish).permit(:name, :description, :portion,
                                    :reference, :cooking_time, :popularity)
+    end
+
+    def correct_user
+      @dish = current_user.dishes.find_by(id: params[:id])
+      redirect_to root_url if @dish.nil?
     end
 end

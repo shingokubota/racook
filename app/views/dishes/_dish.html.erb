@@ -1,9 +1,9 @@
 <li id="dish-<%= dish.id %>">
   <%= link_to gravatar_for(dish.user, size: 50), dish.user %>
-  <span class="name"><%= link_to dish.name, "#" %></span>
+  <span class="name"><%= link_to dish.name, dish_path(dish) %></span>
   <span class="description"><%= dish.description %></span><br>
   <span class="cooking_time">調理時間<%= dish.cooking_time %>分</span>
-  <span class="pupularity">人気度:<%= dish.popularity %></span><br>
+  <span class="pupularity">難易度：<%= dish.popularity %></span><br>
   <span class="referemce"><%= link_to "調理方法", dish.reference, target: :_blank %></span>
   <span class="timestamp"><%= time_ago_in_words(dish.created_at) %>前に投稿</span>
 </li>
