@@ -56,3 +56,6 @@ Airbnb/DefaultScope:
 
 Lint/UselessAssignment:
   Enabled: false
+
+Airbnb/RiskyActiverecordInvocation:
+  Enabled: false
