@@ -16,5 +16,8 @@ module Myapp
       g.assets false          #CSS,JavaScriptファイルは生成しない
       # g.test_framework false  #testファイルは生成しない
     end
+
+    # ブラウザ側でJavaSciptが無効になっていた場合でも動くようにする
+    config.action_view.embed_authenticity_token_in_remote_forms = true
   end
 end
