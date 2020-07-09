@@ -4,6 +4,7 @@ RSpec.describe "Users", type: :system do
   let!(:user) { create(:user) }
   let!(:admin_user) { create(:user, :admin) }
   let!(:other_user) { create(:user) }
+  let!(:dish) { create(:dish, user: user) }
 
   describe "ユーザー一覧ページ" do
     context "管理者ユーザーの場合" do
@@ -177,6 +178,22 @@ RSpec.describe "Users", type: :system do
         click_link "アカウントを削除する"
         page.driver.browser.switch_to.alert.accept
         expect(page).to have_content "自分のアカウントを削除しました"
+      end
+    end
+  end
+
+  describe "お気に入り" do
+    context "お気に入り登録/解除" do
+      before do
+        login_for_system(user)
+      end
+
+      it "料理のお気に入り登録/解除ができること" do
+        expect(user.favorite?(dish)).to be_falsey
+        user.favorite(dish)
+        expect(user.favorite?(dish)).to be_truthy
+        user.unfavorite(dish)
+        expect(user.favorite?(dish)).to be_falsey
       end
     end
   end
