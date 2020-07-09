@@ -1,6 +1,9 @@
 <li id="dish-<%= dish.id %>">
   <%= link_to gravatar_for(dish.user, size: 50), dish.user %>
   <span class="name"><%= link_to dish.name, dish_path(dish) %></span>
+  <span>
+    <%= link_to((image_tag dish.picture.thumb200.url), dish_path(dish.id), class: "dish-picture") if dish.picture.url.present? %>
+  </span>
   <span class="description"><%= dish.description %></span><br>
   <span class="cooking_time">調理時間<%= dish.cooking_time %>分</span>
   <span class="pupularity">難易度：<%= dish.popularity %></span><br>
@@ -10,3 +13,12 @@
     <%= link_to "削除",dish_path(dish), method: :delete, data: { confirm: "削除しますか？"} %>
   <% end %>
 </li>
+
+<script type="text/javascript">
+  $('#dish_picture').bind('change', function(){
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('アップロードできる写真の最大サイズは5MBです。');
+    }
+  });
+</script>

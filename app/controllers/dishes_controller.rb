@@ -50,7 +50,7 @@ class DishesController < ApplicationController
 
     def dish_params
       params.require(:dish).permit(:name, :description, :portion,
-                                   :reference, :cooking_time, :popularity)
+                                   :reference, :cooking_time, :popularity, :picture)
     end
 
     def correct_user

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Dishes", type: :system do
   let!(:user) { create(:user) }
-  let!(:dish) { create(:dish, user: user) }
+  let!(:dish) { create(:dish, :picture, user: user) }
 
   describe "レシピ登録ページ" do
     before do
@@ -37,8 +37,16 @@ RSpec.describe "Dishes", type: :system do
         fill_in "参照用URL", with: "http://test.com"
         fill_in "調理時間", with: 40
         fill_in "難易度", with: 3
+        attach_file "dish[picture]", "#{Rails.root}/spec/fixtures/test_dish.jpg"
         click_button "登録する"
         expect(page).to have_content "レシピを登録しました！"
+      end
+
+      it "画像無しで登録すると、デフォルト画像が割り当てられること" do
+        fill_in "レシピ名", with: "テストレシピ"
+        fill_in "調理時間", with: 30
+        click_button "登録する"
+        expect(page).to have_link(href: dish_path(Dish.first))
       end
 
       it "無効な情報でレシピ登録を行うと料理登録失敗のフラッシュが表示されること" do
@@ -72,6 +80,7 @@ RSpec.describe "Dishes", type: :system do
         expect(page).to have_content dish.reference
         expect(page).to have_content dish.cooking_time
         expect(page).to have_content dish.popularity
+        expect(page).to have_link nil, href: dish_path(dish), class: "dish-picture"
       end
     end
 
@@ -126,6 +135,7 @@ RSpec.describe "Dishes", type: :system do
         fill_in "参照用URL", with: "http://test.hensyuu.com"
         fill_in "調理時間", with: 50
         fill_in "難易度", with: 3
+        attach_file "dish[picture]", "#{Rails.root}/spec/fixtures/test_dish.jpg"
         click_button "更新する"
         expect(page).to have_content "レシピ情報を更新しました！"
         expect(dish.reload.name).to eq "編集：テスト"
@@ -134,6 +144,7 @@ RSpec.describe "Dishes", type: :system do
         expect(dish.reload.reference).to eq "http://test.hensyuu.com"
         expect(dish.reload.cooking_time).to eq 50
         expect(dish.reload.popularity).to eq 3
+        expect(dish.reload.picture.url).to include "test_dish.jpg"
       end
 
       it "無効な更新" do
