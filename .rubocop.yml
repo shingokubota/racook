@@ -53,3 +53,6 @@ RSpec/EmptyLineAfterFinalLet:
 # default_scopeの使用を許可する
 Airbnb/DefaultScope:
   Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false

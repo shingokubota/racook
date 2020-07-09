@@ -4,6 +4,8 @@ RSpec.describe "レシピ編集", type: :request do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
   let!(:dish) { create(:dish, user: user) }
+  let(:picture_edit_path) { File.join(Rails.root, "spec/fixtures/test_dish2.jpg") }
+  let(:picture2) { Rack::Test::UploadedFile.new(picture_edit_path) }
 
   context "認可されたユーザーの場合" do
     it "レスポンスが正常に表示されること（フレンドリーフォワーディング）" do
@@ -16,7 +18,8 @@ RSpec.describe "レシピ編集", type: :request do
                                                portion: 2.0,
                                                reference: "https://test.com",
                                                cooking_time: 40,
-                                               popularity: 2 } }
+                                               popularity: 2,
+                                               picture: picture2 } }
       redirect_to dish
       follow_redirect!
       expect(response).to render_template("dishes/show")
