@@ -13,6 +13,10 @@ class FavoritesController < ApplicationController
       format.html { redirect_to request.referrer || root_url }
       format.js
     end
+    if @user != current_user
+      @user.notifications.create(dish_id: @dish.id, from_user_id: current_user.id)
+      @user.update_attribute(:notification, true)
+    end
   end
 
   def destroy

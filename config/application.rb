@@ -19,5 +19,7 @@ module Myapp
 
     # ブラウザ側でJavaSciptが無効になっていた場合でも動くようにする
     config.action_view.embed_authenticity_token_in_remote_forms = true
+    # 時間を東京に設定
+    config.time_zone = 'Tokyo'
   end
 end
