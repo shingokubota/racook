@@ -283,3 +283,15 @@ h2.dish-name {
 .like-btn-like {
   color: block;
 }
+
+a.like, a.unlike {
+  text-decoration: none;
+}
+
+.favorites {
+  list-style: none;
+  li {
+    padding: 10px 0;
+    border-top: 1px solid
+  }
+}
