@@ -112,7 +112,7 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content dish.description
           expect(page).to have_content dish.name
           expect(page).to have_content dish.cooking_time
-          expect(page).to have_content dish.popularity
+          expect(page).to have_content "★" * dish.popularity + "☆" * (5 - dish.popularity)
           expect(page).to have_link "調理方法"
         end
       end

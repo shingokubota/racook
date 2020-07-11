@@ -25,7 +25,12 @@
           <h5>調理時間：</h5><h4><%= @dish.cooking_time %></h4> <h5>分</h5>
         </div>
         <div class="dish-info">
-          <h5>難易度：</h5><h4><%= @dish.popularity %></h4>
+          <h5>難易度：</h5>
+          <h4>
+          <% if @dish.popularity.present? %>
+            <%= "★" * @dish.popularity %><%= "☆" * (5 - @dish.popularity) %>
+          <% end %>
+          </h4>
         </div>
       </div>
     </div>
