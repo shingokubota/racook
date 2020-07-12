@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Dishes", type: :system do
   let!(:user) { create(:user) }
+  let!(:other_user) { create(:user) }
   let!(:dish) { create(:dish, :picture, user: user) }
 
   describe "レシピ登録ページ" do
@@ -160,6 +161,93 @@ RSpec.describe "Dishes", type: :system do
         click_on "削除"
         page.driver.browser.switch_to.alert.accept
         expect(page).to have_content "レシピを削除しました！"
+      end
+    end
+  end
+
+  context "検索機能" do
+    context "ログインしている場合" do
+      before do
+        login_for_system(user)
+        visit root_path
+      end
+
+      it "ログイン後の各ページに検索窓が表示されていること" do
+        expect(page).to have_css "form#dish_search"
+        visit about_path
+        expect(page).to have_css "form#dish_search"
+        visit terms_path
+        expect(page).to have_css "form#dish_search"
+        visit users_path
+        expect(page).to have_css "form#dish_search"
+        visit user_path(user)
+        expect(page).to have_css "form#dish_search"
+        visit edit_user_path(user)
+        expect(page).to have_css "form#dish_search"
+        visit following_user_path(user)
+        expect(page).to have_css "form#dish_search"
+        visit followers_user_path(user)
+        expect(page).to have_css "form#dish_search"
+        visit dishes_path
+        expect(page).to have_css "form#dish_search"
+        visit dish_path(dish)
+        expect(page).to have_css "form#dish_search"
+        visit new_dish_path
+        expect(page).to have_css "form#dish_search"
+        visit edit_dish_path(dish)
+        expect(page).to have_css "form#dish_search"
+      end
+
+      it "フィードの中から検索ワードに該当する結果が表示されること" do
+        create(:dish, name: "肉じゃが", user: user)
+        create(:dish, name: "肉炒め", user: other_user)
+        create(:dish, name: "もやし料理", user: user)
+        create(:dish, name: "もやし炒め", user: other_user)
+
+        # 誰もフォローしない場合
+        fill_in "q_name_cont", with: "肉"
+        click_button "検索"
+        expect(page).to have_css "h3", text: "\"肉\"の検索結果：1件"
+        within find(".dishes") do
+          expect(page).to have_css "li", count: 1
+        end
+        fill_in "q_name_cont", with: "もやし"
+        click_button "検索"
+        expect(page).to have_css "h3", text: "\"もやし\"の検索結果：1件"
+        within find(".dishes") do
+          expect(page).to have_css "li", count: 1
+        end
+
+        # othre_userをフォローする場合
+        user.follow(other_user)
+        fill_in "q_name_cont", with: "肉"
+        click_button "検索"
+        expect(page).to have_css "h3", text: "\"肉\"の検索結果：2件"
+        within find(".dishes") do
+          expect(page).to have_css "li", count: 2
+        end
+        fill_in "q_name_cont", with: "もやし"
+        click_button "検索"
+        expect(page).to have_css "h3", text: "\"もやし\"の検索結果：2件"
+        within find(".dishes") do
+          expect(page).to have_css "li", count: 2
+        end
+      end
+
+      it "検索ワードを入れずに検索ボタンを押した場合、レシピ一覧が表示されること" do
+        fill_in "q_name_cont", with: ""
+        click_button "検索"
+        expect(page).to have_css "h3", text: "レシピ一覧"
+        within find(".dishes") do
+          expect(page).to have_css "li", count: Dish.count
+        end
+      end
+    end
+
+    context "ログインしていない場合" do
+      it "検索窓が表示されないこと" do
+        visit root_path
+        expect(page).not_to have_css "form.dish_search"
       end
     end
   end
