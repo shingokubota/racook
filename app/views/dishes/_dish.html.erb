@@ -7,6 +7,14 @@
   </span>
   <%= render 'users/favorite_form' %>
   <span class="description"><%= dish.description %></span><br>
+  <div class="dish-ingredient">
+    <p class="title-ingredient-mini">【材料】</p>
+    <% dish.ingredients.each_with_index do |ing, i| %>
+      <% if ing.name.present? %>
+        <%= "|" unless i == 0 %><%= ing.name %>：<%= ing.quantity %>
+      <% end %>
+    <% end %>
+  </div>
   <span class="cooking_time">調理時間<%= dish.cooking_time %>分</span>
   <span class="pupularity">難易度：
     <% if @dish.popularity.present? %>

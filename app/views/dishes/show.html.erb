@@ -19,6 +19,23 @@
       </div>
       <h4><%= @dish.description %></h4>
       <h4 class="dish-reference">参照用URL：<%= link_to "#{@dish.reference}", @dish.reference, target: "_blank" %></h4>
+        <div class="ingredients">
+          <h5 class="title-ingredients">材料</h5>
+          <div class="row">
+            <div class="col-md-8">
+              <table class="ingredient">
+                <% @dish.ingredients.each do |i| %>
+                  <% if i.name.present? %>
+                    <tr>
+                      <td><%= i.name %></td>
+                      <td><%= i.quantity %></td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </table>
+            </div>
+          </div>
+        </div>
       <h4 class="dish-portion"><%= @dish.portion %>　人分</h4>
       <div class="show-dish-info">
         <div class="dish-info">
