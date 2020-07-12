@@ -19,7 +19,9 @@ RSpec.describe "レシピ編集", type: :request do
                                                reference: "https://test.com",
                                                cooking_time: 40,
                                                popularity: 2,
-                                               picture: picture2 } }
+                                               picture: picture2,
+                                               ingredients_attributes: [name: "編集-肉",
+                                                                        quantity: "編集-２枚"] } }
       redirect_to dish
       follow_redirect!
       expect(response).to render_template("dishes/show")
