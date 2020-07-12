@@ -29,6 +29,10 @@ ja:
         cooking_time: 調理時間
         popularity: 難易度
         user_id: 作成者のID
+      ingredient:
+        dish_id: 紐づいたレシピのID
+        name: 材料（10種類まで）
+        quantity: 量
   date:
     abbr_day_names:
     - 日
