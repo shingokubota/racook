@@ -35,12 +35,6 @@ RSpec.describe Dish, type: :model do
       expect(dish.errors[:description]).to include("は200文字以内で入力してください")
     end
 
-    it "調理時間が数値であること" do
-      dish = build(:dish, cooking_time: "４０")
-      dish.valid?
-      expect(dish.errors[:cooking_time]).to include("は数値で入力してください")
-    end
-
     it "人気度が数値であること" do
       dish = build(:dish, popularity: "３０")
       dish.valid?
