@@ -27,6 +27,15 @@ RSpec.describe "Dishes", type: :system do
         expect(page).to have_content "参照用URL"
         expect(page).to have_content "調理時間"
         expect(page).to have_content "難易度"
+        expect(page).to have_css 'label[for=dish_ingredients_attributes_0_name]',
+                                 text: "材料（10種類まで）", count: 1
+        expect(page).to have_css 'label[for=dish_ingredients_attributes_0_quantity]',
+                                 text: "量", count: 1
+      end
+
+      it "材料入力部分が10行表示されること" do
+        expect(page).to have_css "input.ingredient_name", count: 10
+        expect(page).to have_css "input.ingredient_quantity", count: 10
       end
     end
 
@@ -39,6 +48,8 @@ RSpec.describe "Dishes", type: :system do
         fill_in "調理時間", with: 40
         fill_in "難易度", with: 3
         attach_file "dish[picture]", "#{Rails.root}/spec/fixtures/test_dish.jpg"
+        fill_in "dish[ingredients_attributes][0][name]", with: "豆腐"
+        fill_in "dish[ingredients_attributes][0][quantity]", with: "2個"
         click_button "登録する"
         expect(page).to have_content "レシピを登録しました！"
       end
