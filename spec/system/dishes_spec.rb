@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Dishes", type: :system do
   let!(:user) { create(:user) }
   let!(:other_user) { create(:user) }
-  let!(:dish) { create(:dish, :picture, user: user) }
+  let!(:dish) { create(:dish, :picture, :ingredients, user: user) }
 
   describe "レシピ登録ページ" do
     before do
@@ -136,6 +136,13 @@ RSpec.describe "Dishes", type: :system do
         expect(page).to have_content "参照用URL"
         expect(page).to have_content "調理時間 [分]"
         expect(page).to have_content "難易度 [1~5]"
+        expect(page).to have_css "p.title-ingredient-name", text: "材料（10種類まで）", count: 1
+        expect(page).to have_css "p.title-ingredient-quantity", text: "量", count: 1
+      end
+
+      it "材料入力部分が10行表示されること" do
+        expect(page).to have_css "input.ingredient_name", count: 10
+        expect(page).to have_css "input.ingredient_quantity", count: 10
       end
     end
 
@@ -147,6 +154,8 @@ RSpec.describe "Dishes", type: :system do
         fill_in "参照用URL", with: "http://test.hensyuu.com"
         fill_in "調理時間", with: 50
         fill_in "難易度", with: 3
+        fill_in "dish[ingredients_attributes][0][name]", with: "編集-イカ"
+        fill_in "dish[ingredients_attributes][0][quantity]", with: "編集-3枚"
         attach_file "dish[picture]", "#{Rails.root}/spec/fixtures/test_dish.jpg"
         click_button "更新する"
         expect(page).to have_content "レシピ情報を更新しました！"
@@ -157,6 +166,8 @@ RSpec.describe "Dishes", type: :system do
         expect(dish.reload.cooking_time).to eq 50
         expect(dish.reload.popularity).to eq 3
         expect(dish.reload.picture.url).to include "test_dish.jpg"
+        expect(dish.reload.ingredients.first.name).to eq "編集-イカ"
+        expect(dish.reload.ingredients.first.quantity).to eq "編集-3枚"
       end
 
       it "無効な更新" do
