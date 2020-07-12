@@ -229,15 +229,14 @@ RSpec.describe "Dishes", type: :system do
         create(:dish, name: "肉炒め", user: other_user)
         create(:dish, name: "もやし料理", user: user)
         create(:dish, name: "もやし炒め", user: other_user)
-
         # 誰もフォローしない場合
-        fill_in "q_name_cont", with: "肉"
+        fill_in "q_name_or_ingredients_name_cont", with: "肉"
         click_button "検索"
-        expect(page).to have_css "h3", text: "\"肉\"の検索結果：1件"
+        expect(page).to have_css "h3", text: "\"肉\"の検索結果：2件"
         within find(".dishes") do
-          expect(page).to have_css "li", count: 1
+          expect(page).to have_css "li", count: 2
         end
-        fill_in "q_name_cont", with: "もやし"
+        fill_in "q_name_or_ingredients_name_cont", with: "もやし"
         click_button "検索"
         expect(page).to have_css "h3", text: "\"もやし\"の検索結果：1件"
         within find(".dishes") do
@@ -246,22 +245,31 @@ RSpec.describe "Dishes", type: :system do
 
         # othre_userをフォローする場合
         user.follow(other_user)
-        fill_in "q_name_cont", with: "肉"
+        fill_in "q_name_or_ingredients_name_cont", with: "肉"
         click_button "検索"
-        expect(page).to have_css "h3", text: "\"肉\"の検索結果：2件"
+        expect(page).to have_css "h3", text: "\"肉\"の検索結果：3件"
         within find(".dishes") do
-          expect(page).to have_css "li", count: 2
+          expect(page).to have_css "li", count: 3
         end
-        fill_in "q_name_cont", with: "もやし"
+        fill_in "q_name_or_ingredients_name_cont", with: "もやし"
         click_button "検索"
         expect(page).to have_css "h3", text: "\"もやし\"の検索結果：2件"
         within find(".dishes") do
           expect(page).to have_css "li", count: 2
         end
+
+        # 材料も含めて検索に引っかかること
+        create(:ingredient, name: "豚肉", dish: Dish.first)
+        fill_in "q_name_or_ingredients_name_cont", with: "豚"
+        click_button "検索"
+        expect(page).to have_css "h3", text: "\"豚\"の検索結果：1件"
+        within find(".dishes") do
+          expect(page).to have_css "li", count: 1
+        end
       end
 
       it "検索ワードを入れずに検索ボタンを押した場合、レシピ一覧が表示されること" do
-        fill_in "q_name_cont", with: ""
+        fill_in "q_name_or_ingredients_name_cont", with: ""
         click_button "検索"
         expect(page).to have_css "h3", text: "レシピ一覧"
         within find(".dishes") do
