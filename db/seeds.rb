@@ -8,10 +8,10 @@ User.create!(
       admin: true,
     },
     {
-      name: "吉祥寺　太郎",
-      email: "kichijouji@example.com",
-      password: "foobar",
-      password_confirmation: "foobar",
+      name: "採用ご担当者様用",
+      email: "saiyou@example.com",
+      password: "password",
+      password_confirmation: "password",
     },
     {
       name: "テスト　太郎",
