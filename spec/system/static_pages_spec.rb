@@ -14,6 +14,10 @@ RSpec.describe "静的ページ", type: :system do
       it "正しいタイトルが表示されることを確認" do
         expect(page).to have_content full_title
       end
+
+      it "利用規約の文字列が存在することを確認" do
+        expect(page).to have_content "利用規約"
+      end
     end
   end
 
@@ -42,6 +46,10 @@ RSpec.describe "静的ページ", type: :system do
 
     it "正しいタイトルが表示されることを確認" do
       expect(page).to have_title full_title('利用規約')
+    end
+
+    it "正しく内容が表示されること" do
+      expect(page).to have_content "第1条（適用）"
     end
   end
 

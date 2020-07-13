@@ -76,6 +76,19 @@ footer {
   }
 }
 
+.terms{
+  border-radius: 15px;
+  background: #eff5f6;
+  border: 5px solid #e5eeef;
+  row {
+    margin: 20px;
+  }
+  h2 {
+    font-weight: bold;
+    text-align: left;
+  }
+}
+
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
