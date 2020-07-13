@@ -148,12 +148,13 @@ RSpec.describe "Users", type: :system do
           visit dish_path(other_dish)
         end
 
-        it "お気に入り登録によって通知が作成されること" do
+        it "お気に入り登録によって通知が作成されること（通知数が表示されること）" do
           find(".like").click
           visit dish_path(other_dish)
           expect(page).to have_css "li.no_notification"
           logout
           login_for_system(other_user)
+          expect(page).to have_content other_user.notification_count
           expect(page).to have_css "li.new_notification"
           visit notifications_path
           expect(page).to have_css "li.no_notification"
@@ -173,6 +174,7 @@ RSpec.describe "Users", type: :system do
           find(".like").click
           visit dish_path(dish)
           expect(page).to have_css "li.no_notification"
+          expect(page).not_to have_css "span.notification_count"
           visit notifications_path
           expect(page).not_to have_content "お気に入りに登録されました。"
           expect(page).not_to have_content dish.name

@@ -10,7 +10,10 @@
             <% else %>
               <li class="no_notification header-link">
             <% end %>
-            <%= link_to notifications_path do %><span>通知</span><% end %>
+            <%= link_to notifications_path do %><span>通知
+            <% if current_user.notification_count != 0 %>
+            <span class="notification_count"><%= current_user.notification_count %><span>
+            <% end %></span><% end %>
               </li>
             <li><%= link_to "お気に入り", favorites_path %></li>
             <li><%= link_to 'ユーザー一覧', users_path %></li>
