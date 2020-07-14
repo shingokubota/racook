@@ -1,15 +1,5 @@
 <% if logged_in? %>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-9">
-        <h3>みんなの料理（<%= @feed_items.count %>）</h3>
-        <%= render 'shared/feed' %>
-      </div>
-      <div class="col-md-3">
-        <p><%= link_to "レシピを登録する", new_dish_path, class: "btn btn-primary btn-lg btn-record" %></p>
-      </div>
-    </div>
-  </div>
+  <%= render 'shared/seasons' %>
 <% else %>
   <%= render 'shared/recruit_login' %>
   <%# <center>
