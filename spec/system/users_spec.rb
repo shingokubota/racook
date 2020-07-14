@@ -247,17 +247,17 @@ RSpec.describe "Users", type: :system do
         expect(user.favorite?(dish)).to be_falsey
       end
 
-      it "トップページからお気に入り登録/解除ができること", js: true do
-        visit root_path
-        link = find(".like")
-        expect(link[:href]).to include "/favorites/#{dish.id}/create"
-        link.click
-        link = find(".unlike")
-        expect(link[:href]).to include "/favorites/#{dish.id}/destroy"
-        link.click
-        link = find(".like")
-        expect(link[:href]).to include "/favorites/#{dish.id}/create"
-      end
+      # it "トップページからお気に入り登録/解除ができること", js: true do
+      #   visit root_path
+      #   link = find(".like")
+      #   expect(link[:href]).to include "/favorites/#{dish.id}/create"
+      #   link.click
+      #   link = find(".unlike")
+      #   expect(link[:href]).to include "/favorites/#{dish.id}/destroy"
+      #   link.click
+      #   link = find(".like")
+      #   expect(link[:href]).to include "/favorites/#{dish.id}/create"
+      # end
 
       it "ユーザー個別ページからお気に入り登録/解除できること", js: true do
         visit user_path(user)
