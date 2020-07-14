@@ -128,6 +128,55 @@ input {
   margin-left: 0;
 }
 
+// 季節選択ページ
+.seasons {
+  background: navajowhite;
+  padding: 60px 0;
+  border: 1px solid lightslategray ;
+  a {
+    display: block;
+  }
+}
+.january {
+  color: red($color: #000000);
+  background-image: image-url("january.png");
+}
+.february {
+  background-image: image-url("february.png");
+}
+.march {
+  background-image: image-url("march.png");
+}
+.april {
+  background-image: image-url("april.png");
+}
+.may {
+  background-image: image-url("may.png");
+}
+.june {
+  background-image: image-url("june.png");
+}
+.july {
+  background-image: image-url("july.png");
+}
+.august {
+  background-image: image-url("august.png");
+}
+.september {
+  background-image: image-url("september.png");
+}
+.october {
+  background-image: image-url("october.png");
+}
+.november {
+  background-image: image-url("november.png");
+}
+.december {
+  background-image: image-url("december.png");
+}
+
+
+
 // プロフィールページ
 .title-profile {
  padding-bottom: 10px;
