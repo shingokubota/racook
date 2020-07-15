@@ -53,33 +53,49 @@ RSpec.describe "静的ページ", type: :system do
     end
   end
 
-  # context "料理のフィード", js: true do
-  #   let!(:user) { create(:user) }
-  #   let!(:dish) { create(:dish, user: user) }
-  #   before do
-  #     login_for_system(user)
-  #   end
+  context "料理のフィード", js: true do
+    let!(:user) { create(:user) }
+    let!(:dish) { create(:dish, user: user) }
+    before do
+      login_for_system(user)
+    end
 
-  #   it "料理のページネーションが表示されないこと" do
-  #     create_list(:dish, 6, user: user)
-  #     visit root_path
-  #     expect(page).to have_content "みんなの料理（#{user.dishes.count}）"
-  #     expect(page).to have_css "div.pagination"
-  #     Dish.take(5).each do |d|
-  #       expect(page).to have_link d.name
-  #     end
-  #   end
+    it "季節選択ページが表示されること" do
+      visit root_path
+      expect(page).to have_content "１月"
+      expect(page).to have_content "２月"
+      expect(page).to have_content "３月"
+      expect(page).to have_content "４月"
+      expect(page).to have_content "５月"
+      expect(page).to have_content "６月"
+      expect(page).to have_content "７月"
+      expect(page).to have_content "８月"
+      expect(page).to have_content "９月"
+      expect(page).to have_content "１０月"
+      expect(page).to have_content "１１月"
+      expect(page).to have_content "１２月"
+    end
 
-  #   it "「レシピを登録する」リンクが登録されること" do
-  #     visit root_path
-  #     expect(page).not_to have_link "レシピを登録する", href: new_dish_path
-  #   end
+    # it "料理のページネーションが表示されないこと" do
+    #   create_list(:dish, 6, user: user)
+    #   visit root_path
+    #   expect(page).to have_content "みんなの料理（#{user.dishes.count}）"
+    #   expect(page).to have_css "div.pagination"
+    #   Dish.take(5).each do |d|
+    #     expect(page).to have_link d.name
+    #   end
+    # end
 
-  #   it "レシピを削除後、削除成功のフラッシュが表示されること" do
-  #     visit root_path
-  #     click_on "削除"
-  #     page.driver.browser.switch_to.alert.accept
-  #     expect(page).to have_content "レシピを削除しました！"
-  #   end
-  # end
+    # it "「レシピを登録する」リンクが登録されること" do
+    #   visit root_path
+    #   expect(page).not_to have_link "レシピを登録する", href: new_dish_path
+    # end
+
+    # it "レシピを削除後、削除成功のフラッシュが表示されること" do
+    #   visit root_path
+    #   click_on "削除"
+    #   page.driver.browser.switch_to.alert.accept
+    #   expect(page).to have_content "レシピを削除しました！"
+    # end
+  end
 end
