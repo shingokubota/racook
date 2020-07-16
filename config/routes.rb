@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'seasons/season'
   root 'static_pages#home'
   get :about,   to: 'static_pages#about'
   get :terms,   to: 'static_pages#terms'
