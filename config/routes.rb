@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   post "favorites/:dish_id/create" => "favorites#create"
   delete "favorites/:dish_id/destroy" => "favorites#destroy"
   resources :notifications, only: :index
+  get "/season", to: "seasons#season"
 end
