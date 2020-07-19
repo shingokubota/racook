@@ -6,7 +6,6 @@ RSpec.describe "Seasons", type: :system do
   describe "季節選択ページ" do
     before do
       login_for_system(user)
-      visit root_path
     end
 
     context "ページレイアウト" do
@@ -44,6 +43,17 @@ RSpec.describe "Seasons", type: :system do
       it "各月のリンクをクリックすると各月のページへ飛ぶこと" do
         click_link '１月'
         expect(page).to have_content "ほうれん草"
+        expect(page).to have_link "ほうれん草"
+        expect(page).to have_content "ミズナ"
+        expect(page).to have_content "ダイコン"
+      end
+
+      it "各野菜のリンクを押すと選択した野菜名で検索されること" do
+        click_link '１月'
+        click_link 'ほうれん草'
+        expect(page).to have_content "ほうれん草"
+        click_button '検索'
+        expect(page).to have_content "検索結果："
       end
     end
   end

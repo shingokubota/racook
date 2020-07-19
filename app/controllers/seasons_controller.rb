@@ -1,6 +1,9 @@
 class SeasonsController < ApplicationController
   before_action :logged_in_user
 
+  def index
+  end
+
   def season
     case params[:season_name]
     when "january"
@@ -28,5 +31,11 @@ class SeasonsController < ApplicationController
     when 'december'
       render 'december'
     end
+  end
+
+  def search
+    @vegetables_name = params[:vegetables_name]
+    # render 'december'
+    render "#{params[:season_name]}"
   end
 end

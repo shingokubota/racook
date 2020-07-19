@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   delete "favorites/:dish_id/destroy" => "favorites#destroy"
   resources :notifications, only: :index
   get "/season", to: "seasons#season"
+  get "/search", to: "seasons#search"
+  get "/season_index", to: "seasons#index"
 end
