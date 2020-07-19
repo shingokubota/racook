@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "ユーザー登録に成功しました！"
-      redirect_to @user
+      redirect_to season_index_path
     else
       render 'new'
     end

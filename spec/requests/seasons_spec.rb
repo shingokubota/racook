@@ -9,8 +9,12 @@ RSpec.describe "季節選択", type: :request do
     end
 
     it "季節選択ページが表示されること" do
-      get root_path
-      expect(response).to render_template("shared/_seasons")
+      expect(response).to redirect_to season_index_path
+    end
+
+    it "野菜を選択するとリダイレクトされること" do
+      get season_path(:season_name => "january")
+      expect(response).to render_template('seasons/january')      
     end
   end
 end

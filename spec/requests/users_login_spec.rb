@@ -34,7 +34,7 @@ RSpec.describe "ログイン", type: :request do
   context "ログアウトする場合" do
     it "ログイン中のみログアウトすることを確認" do
       login_for_request(user)
-      expect(response).to redirect_to user_path(user)
+      expect(response).to redirect_to season_index_path
       # ログアウト
       delete logout_path
       expect(response).to redirect_to root_path

@@ -2,13 +2,20 @@
   <%= search_form_for @q do |f| %>
     <div class="col-md-10">
       <div class="form-group">
-        <%= f.search_field :name_or_ingredients_name_cont, placeholder: "レシピ名、材料名で検索", class: "form-control font-awesome" %>
+        <%= f.search_field :name_or_ingredients_name_cont, placeholder: "レシピ名、材料名で検索", class: "form-control font-awesome", value: @vegetables_name %>
       </div>
     </div>
     <div class="col-md-2">
       <div class="form-group">
-        <%= f.submit nil, class: "btn btn-primary" %>
+        <%= f.submit nil, class: "btn btn-primary", id:"submit" %>
+        <% if @vegetables_name != nil %>
+          <script>
+            document.getElementById('submit').click();
+          </script>
+        <% end %>
       </div>
     </div>
   <% end %>
 </div>
+
+

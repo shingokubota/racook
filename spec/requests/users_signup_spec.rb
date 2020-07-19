@@ -17,9 +17,10 @@ RSpec.describe "ユーザー登録", type: :request do
                                          password: "foobar",
                                          password_confirmation: "foobar" } }
     }.to change(User, :count).by(1)
-    redirect_to @user
+    redirect_to season_index_path
     follow_redirect!
-    expect(response).to render_template('users/show')
+    # expect(response).to render_template('users/show')
+    expect(response).to render_template('seasons/index')
     expect(is_logged_in?).to be_truthy
   end
 
