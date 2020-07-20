@@ -175,7 +175,13 @@ input {
   background-image: image-url("december.png");
 }
 
-
+div.monthlyimagebox {
+  height: 180px;
+  float: left;
+  font-weight: bold;
+  margin: 0 2px 10px;
+  position: relative;
+}
 
 // プロフィールページ
 .title-profile {

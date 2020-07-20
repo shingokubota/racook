@@ -2,8 +2,29 @@
 
 <div class="container">
   <div class="row">
-    <ul>アスパラ</ul>
-    <ul>そらまめ</ul>
-    <ul>スナップエンドウ</ul>
+    <div class="monthlyimagebox">
+      <p>
+        <%= link_to (image_tag( "asupara.png", :alt => "アスパライメージ")), search_path(:vegetables_name => "アスパラ", :season_name => "june") %>
+      </p>
+      <p>
+        <%= link_to "アスパラ" , search_path(:vegetables_name => "アスパラ", :season_name => "june") %>
+      </p>
+    </div>
+    <div class="monthlyimagebox">
+      <p>
+        <%= link_to (image_tag( "soramame.png", :alt => "そらまめイメージ")), search_path(:vegetables_name => "そらまめ", :season_name => "june") %>
+      </p>
+      <p>
+        <%= link_to "そらまめ" , search_path(:vegetables_name => "そらまめ", :season_name => "june") %>
+      </p>
+    </div>
+    <div class="monthlyimagebox">
+      <p>
+        <%= link_to (image_tag( "snapendou.png", :alt => "スナップエンドウイメージ")), search_path(:vegetables_name => "スナップエンドウ", :season_name => "june") %>
+      </p>
+      <p>
+        <%= link_to "スナップエンドウ" , search_path(:vegetables_name => "スナップエンドウ", :season_name => "june") %>
+      </p>
+    </div>
   </div>
 </div>
