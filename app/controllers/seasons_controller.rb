@@ -35,7 +35,6 @@ class SeasonsController < ApplicationController
 
   def search
     @vegetables_name = params[:vegetables_name]
-    # render 'december'
     render "#{params[:season_name]}"
   end
 end

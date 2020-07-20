@@ -2,17 +2,29 @@
 
 <div class="container">
   <div class="row">
-    <ul>
-    <%= link_to "ほうれん草" , search_path(:vegetables_name => "ほうれん草", :season_name => "january") %>
-    <%= link_to (image_tag( "hourensou.png", :alt => "ほうれん草イメージ")), "#" %>
-    </ul>
-    <ul>
-    ミズナ
-    <%= image_tag( "mizuna.png", :alt => "ミズナイメージ") %>
-    </ul>
-    <ul>
-    ダイコン
-    <%= image_tag( "daikon.png", :alt => "ダイコンイメージ") %>
-    </ul>
+    <div class="monthlyimagebox">
+      <p>
+        <%= link_to (image_tag( "hourensou.png", :alt => "ほうれん草イメージ")), search_path(:vegetables_name => "ほうれん草", :season_name => "january") %>
+      </p>
+      <p>
+        <%= link_to "ほうれん草" , search_path(:vegetables_name => "ほうれん草", :season_name => "january") %>  
+      </p>
+    </div>
+    <div class="monthlyimagebox">
+      <p>
+        <%= link_to (image_tag( "mizuna.png", :alt => "ミズナイメージ")), search_path(:vegetables_name => "ミズナ", :season_name => "january") %>
+      </p>
+      <p>
+        <%= link_to "ミズナ" , search_path(:vegetables_name => "ミズナ", :season_name => "january") %>
+      </p>
+    </div>
+    <div class="monthlyimagebox">
+      <p>
+        <%= link_to (image_tag( "daikon.png", :alt => "ダイコンイメージ")), search_path(:vegetables_name => "ダイコン", :season_name => "january") %>
+      </p>
+      <p>
+        <%= link_to "ダイコン" , search_path(:vegetables_name => "ダイコン", :season_name => "january") %>
+      </p>
+    </div>
   </div>
 </div>

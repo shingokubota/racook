@@ -1,23 +1,23 @@
 User.create!(
   [
     {
-      name: "テスト　花子",
-      email: "test_hanako@example.com",
-      password: "foobar",
-      password_confirmation: "foobar",
-      admin: true,
-    },
-    {
       name: "採用ご担当者様用",
       email: "saiyou@example.com",
       password: "password",
       password_confirmation: "password",
     },
     {
+      name: "テスト　花子",
+      email: "test_hanako@example.com",
+      password: "foobar",
+      password_confirmation: "foobar",
+    },
+    {
       name: "テスト　太郎",
       email: "test@example.com",
       password: "foobar",
       password_confirmation: "foobar",
+      admin: true
     }
   ]
 )
@@ -26,8 +26,8 @@ User.create!(
 user1 = User.find(1)
 user2 = User.find(2)
 user3 = User.find(3)
-user3.follow(user1)
-user3.follow(user2)
+user1.follow(user2)
+user1.follow(user3)
 
 # レシピ
 portion = 2
@@ -54,7 +54,7 @@ Dish.create!(
                                 { name: "しょうゆ", quantity: "大さじ2" },
                                 { name: "みりん", quantity: "大さじ2" },
                                 { name: "酒", quantity: "大さじ2" },
-                                { name: "", quantity: "" },
+                                { name: "パプリカ", quantity: "２個" },
                                 { name: "", quantity: "" },
                                 { name: "", quantity: "" }
                               ],
@@ -143,8 +143,8 @@ Dish.create!(
                                 { name: "ししとう", quantity: "6本" },
                                 { name: "本みりん", quantity: "大さじ2" },
                                 { name: "ねり梅", quantity: "大さじ1" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" }
+                                { name: "くうしんさい", quantity: "適量" },
+                                { name: "ハクサイ", quantity: "適量" }
                               ],
     },
     {
@@ -166,7 +166,7 @@ Dish.create!(
                                 { name: "揚げエシャロット", quantity: "10g" },
                                 { name: "水菜カットボイル", quantity: "15g" },
                                 { name: "万能ネギカット", quantity: "15g" },
-                                { name: "", quantity: "" }
+                                { name: "クレソン", quantity: "適量" }
                               ],
     },
     {
@@ -183,10 +183,10 @@ Dish.create!(
                                 { name: "エリンギ", quantity: "オリーブ油" },
                                 { name: "塩、胡椒", quantity: "適宜" },
                                 { name: "醤油", quantity: "大さじ１〜" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
+                                { name: "なのはな", quantity: "適量" },
+                                { name: "ふきのとう", quantity: "適量" },
+                                { name: "芽キャベツ", quantity: "適量" },
+                                { name: "シュンギク", quantity: "適量" },
                                 { name: "", quantity: "" },
                                 { name: "", quantity: "" }
                               ],
@@ -208,9 +208,9 @@ Dish.create!(
                                 { name: "エリンギ", quantity: "1~2本" },
                                 { name: "キャベツ", quantity: "3~4枚" },
                                 { name: "もやし", quantity: "1/3袋" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" }
+                                { name: "ニラ", quantity: "適量" },
+                                { name: "わらび", quantity: "適量" },
+                                { name: "セロリ", quantity: "適量" }
                               ],
     },
     {
@@ -231,8 +231,8 @@ Dish.create!(
                                 { name: "ワサビ", quantity: "小さじ1/4弱" },
                                 { name: "塩", quantity: "少々" },
                                 { name: "砕いたアーモンドやくるみ", quantity: "好みで少し" },
-                                 { name: "", quantity: "" },
-                                { name: "", quantity: "" }
+                                 { name: "レタス", quantity: "４枚" },
+                                { name: "チンゲンサイ", quantity: "２個" }
                               ],
     },
     {
@@ -272,11 +272,11 @@ Dish.create!(
                                 { name: "えのき", quantity: "1/4束" },
                                 { name: "インゲン", quantity: "適量" },
                                 { name: "ポン酢", quantity: "適量" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" }
+                                { name: "スナップエンドウ", quantity: "適量" },
+                                { name: "カリフラワー", quantity: "適量" },
+                                { name: "アスパラ", quantity: "４本" },
+                                { name: "そらまめ", quantity: "適量" },
+                                { name: "ブロッコリー", quantity: "適量" }
                               ],
     },
     {
@@ -316,11 +316,11 @@ Dish.create!(
                                 { name: "ごま油", quantity: "大さじ２" },
                                 { name: "めんつゆ", quantity: "小さじ１と半分" },
                                 { name: "さしみ醤油", quantity: "小さじ１と半分" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" }
+                                { name: "らっきょう", quantity: "２個" },
+                                { name: "ごぼう", quantity: "１本" },
+                                { name: "しそ", quantity: "適量" },
+                                { name: "オクラ", quantity: "適量" },
+                                { name: "カブ", quantity: "２個" }
                               ],
     },
     {
@@ -337,12 +337,12 @@ Dish.create!(
                                 { name: "羊名人", quantity: "大さじ1.5" },
                                 { name: "塩胡椒", quantity: "適宜" },
                                 { name: "油", quantity: "大さじ1.5" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" }
+                                { name: "トウガン", quantity: "１個" },
+                                { name: "ゴーヤー", quantity: "２個" },
+                                { name: "さといも", quantity: "適量" },
+                                { name: "じゃがいも", quantity: "３個" },
+                                { name: "かぼちゃ", quantity: "適量" },
+                                { name: "くり", quantity: "４個" }
                               ],
     },
     {
@@ -357,14 +357,14 @@ Dish.create!(
       ingredients_attributes: [
                                 { name: "えのき", quantity: "1/2袋" },
                                 { name: "ベーコン", quantity: "1枚" },
-                                { name: "大根", quantity: "2枚" },
+                                { name: "ダイコン", quantity: "2枚" },
                                 { name: "茹で卵", quantity: "2個" },
                                 { name: "さつま揚げ", quantity: "2枚" },
                                 { name: "ちくわ", quantity: "1本" },
                                 { name: "結びしらたき", quantity: "2本" },
                                 { name: "結び昆布", quantity: "2枚" },
-                                { name: "", quantity: "" },
-                                { name: "", quantity: "" }
+                                { name: "ミズナ", quantity: "適量" },
+                                { name: "さつまいも", quantity: "適量" }
                               ],
     }
   ]
@@ -384,8 +384,8 @@ user1.favorite(dish15)
 user2.favorite(dish12)
 
 # 通知
-user3.notifications.create(user_id: user3.id, dish_id: dish15.id,
+user1.notifications.create(user_id: user3.id, dish_id: dish15.id,
                            from_user_id: user1.id)
-user3.notifications.create(user_id: user3.id, dish_id: dish12.id,
+user1.notifications.create(user_id: user3.id, dish_id: dish12.id,
                               from_user_id: user2.id)
 
