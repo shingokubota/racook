@@ -5,75 +5,37 @@
   box-sizing:         border-box;
 }
 
-// 全ページ共通
-body {
-  padding-top: 60px;
-}
-
-section {
-  overflow: auto;
-}
-
-textarea {
-  resize: vertical;
-}
-
-.center {
-  text-align: center;
-  h1 {
-    margin-bottom: 10px;
-  }
-}
-
-// テキストの見栄え
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
+.row {
+  margin-top: 20px;
 }
 
 h1 {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
   text-align: center;
 }
 
-h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: #777;
-}
-
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
-}
-
-// ヘッダー
-.navbar ul{
-  margin-top: 12px;
-  margin-bottom: 12px;
-}
- #logo {
-  float: left;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  img {
-    width: 150px;
-  }
-}
-
-// フッター
+// // フッター
 footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #777;
-  small {
-    float: center;
+    height: 80px;
+    margin-top: 10em;
+    padding-bottom: 20px;
+    padding: 1em 0;
+    background: #FFF;
+    border-top: 1px solid #bbb;
+}
+.fh5co-nav-toggle {
+  position: fixed;
+}
+
+#logo{
+  img {
+    max-width: 100%;
+    width: 150px;
+    height:   45px;
   }
+}
+
+#fh5co-logo a {
+  border: 2px none #00ADB5;
 }
 
 .terms{
@@ -123,7 +85,7 @@ input {
   }
 }
 
-#session remmber_me {
+#session_remember_me {
   width: auto;
   margin-left: 0;
 }
