@@ -5,6 +5,24 @@
   box-sizing:         border-box;
 }
 
+// PC
+.pc_area {
+  display: block;
+}
+.phone_area {
+  display: none;
+}
+
+//スマホ
+@media screen and (max-width: 768px) {
+  .pc_area {
+    display: none;
+  }
+  .phone_area {
+    display: block;
+  }
+}
+
 .row {
   margin-top: 20px;
 }
@@ -21,9 +39,6 @@ footer {
     padding: 1em 0;
     background: #FFF;
     border-top: 1px solid #bbb;
-}
-.fh5co-nav-toggle {
-  position: fixed;
 }
 
 #logo{
@@ -230,7 +245,7 @@ span.picture {
 // トップページ（ログイン後）
 // 「新しい料理を作る」ボタン
 .btn-record {
-  margin-top: 3em;
+  border-radius: 50px;
 }
 
 .recruit-login {

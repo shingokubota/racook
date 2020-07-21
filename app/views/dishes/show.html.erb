@@ -1,53 +1,55 @@
 <% provide(:title, "#{@dish.name}") %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <span class="picture">
-        <%= link_to((image_tag @dish.picture.thumb400.url), dish_path(@dish.id), class: "dish-picture") if @dish.picture.url.present? %>
-      </span>
-      <%= render "users/favorite_form" %>
-    </div>
-    <div class="col-md-8">
-      <h2 class="dish-name"><%= @dish.name %></h2>
-      <div class="change-dish">
-        <% if current_user == @dish.user %>
-          <%= link_to "編集", edit_dish_path(@dish), class: 'edit-dish' %>
-        <% end %>
-        <% if current_user.admin? || current_user == @dish.user %>
-          <%= link_to "削除", dish_path(@dish), method: :delete, class: "delete-dish", data: { confirm: "削除しますか？"} %>
-        <% end %>
+<div id="fh5co-portfolio">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <span class="picture">
+          <%= link_to((image_tag @dish.picture.thumb400.url), dish_path(@dish.id), class: "dish-picture") if @dish.picture.url.present? %>
+        </span>
+        <%= render "users/favorite_form" %>
       </div>
-      <h4><%= @dish.description %></h4>
-      <h4 class="dish-reference">参照用URL：<%= link_to "#{@dish.reference}", @dish.reference, target: "_blank" %></h4>
-        <div class="ingredients">
-          <h5 class="title-ingredients">材料</h5>
-          <div class="row">
-            <div class="col-md-8">
-              <table class="ingredient">
-                <% @dish.ingredients.each do |i| %>
-                  <% if i.name.present? %>
-                    <tr>
-                      <td><%= i.name %></td>
-                      <td><%= i.quantity %></td>
-                    </tr>
+      <div class="col-md-8">
+        <h2 class="dish-name"><%= @dish.name %></h2>
+        <div class="change-dish">
+          <% if current_user == @dish.user %>
+            <%= link_to "編集", edit_dish_path(@dish), class: 'edit-dish' %>
+          <% end %>
+          <% if current_user.admin? || current_user == @dish.user %>
+            <%= link_to "削除", dish_path(@dish), method: :delete, class: "delete-dish", data: { confirm: "削除しますか？"} %>
+          <% end %>
+        </div>
+        <h4><%= @dish.description %></h4>
+        <h4 class="dish-reference">参照用URL：<%= link_to "#{@dish.reference}", @dish.reference, target: "_blank" %></h4>
+          <div class="ingredients">
+            <h5 class="title-ingredients">材料</h5>
+            <div class="row">
+              <div class="col-md-8">
+                <table class="ingredient">
+                  <% @dish.ingredients.each do |i| %>
+                    <% if i.name.present? %>
+                      <tr>
+                        <td><%= i.name %></td>
+                        <td><%= i.quantity %></td>
+                      </tr>
+                    <% end %>
                   <% end %>
-                <% end %>
-              </table>
+                </table>
+              </div>
             </div>
           </div>
-        </div>
-      <h4 class="dish-portion"><%= @dish.portion %>　人分</h4>
-      <div class="show-dish-info">
-        <div class="dish-info">
-          <h5>調理時間：</h5><h4><%= @dish.cooking_time %></h4> <h5>分</h5>
-        </div>
-        <div class="dish-info">
-          <h5>難易度：</h5>
-          <h4>
-          <% if @dish.popularity.present? %>
-            <%= "★" * @dish.popularity %><%= "☆" * (5 - @dish.popularity) %>
-          <% end %>
-          </h4>
+        <h4 class="dish-portion"><%= @dish.portion %>　人分</h4>
+        <div class="show-dish-info">
+          <div class="dish-info">
+            <h5>調理時間：</h5><h4><%= @dish.cooking_time %></h4> <h5>分</h5>
+          </div>
+          <div class="dish-info">
+            <h5>難易度：</h5>
+            <h4>
+            <% if @dish.popularity.present? %>
+              <%= "★" * @dish.popularity %><%= "☆" * (5 - @dish.popularity) %>
+            <% end %>
+            </h4>
+          </div>
         </div>
       </div>
     </div>
