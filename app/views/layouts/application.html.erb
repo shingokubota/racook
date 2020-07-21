@@ -7,14 +7,11 @@
   </head>
   <body>
     <div id="fh5co-wrapper">
-      <div id="fh5co-page">
-        <nav id="offcanvas-menu" role="navigation" style="height: 127px;">
-            <ul class id style="touch-action: pan-y;">
-            </ul>
-        </nav>
-        <div id="fh5co-header">
-          <%= render 'layouts/header' %>
-        </div>
+    <div id="fh5co-page">
+    <div id="fh5co-header">
+      <%= render 'layouts/header' %>
+    </div>
+        <!-- end:fh5co-header -->
           <% flash.each do |message_type, message| %>
             <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
           <% end %>
@@ -22,7 +19,7 @@
           <%= yield %>
           <%= render 'layouts/footer' %>
           <%= render 'layouts/js' %>
-      </div>
+    </div>
     </div>
   </body>
 </html>
